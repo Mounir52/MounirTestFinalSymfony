@@ -98,7 +98,12 @@ class FosUser
      */
     private $roles;
 
-
+     /*
+      * Méthode pour récupérer en string le username de FosUser
+      */
+    public function __toString() {
+         return $this->username;
+    }
 
     /**
      * Get id
