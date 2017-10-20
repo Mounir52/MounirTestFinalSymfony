@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    {% for s in Section %}
-        <a href="{{ path("admin_section_show",{'id':s.id}) }}">{{ s.theTitle }}</a> |
-  
-     {% endfor %}
-     {% for a in Article %}
-         <h3>{{ a.theTitle }}</h3>
-        <p>{{ a.theText }}</p>
-         <p>Ecrit le {{ a.theDate|date("Y-m-d") }} par {{ a.fosUser.username }}</p>
-         <hr/>
-     {% endfor %}
-{% endblock %}
+{% block menu %}
+ {% for s in Section %}
+ <a href="{{ path("section",{ 'id': s.id }) }}">{{ s.thetitle }}</a>
+ {% endfor %}<hr/>
+ {% endblock %}
+  {% block body %}
+     <h1>accueil</h1>
+ {% for a in Article %}
+ <hr/>
+ <h2>{{ a.thetitle }}</h2>
+    <hr/>
+     <h4>{# Si il y a des sections (pas vide) #}
+         {% if not a.Section.empty %}
+                 {% for c in a.Section %}
+                    <a href="{{ path("section",{ 'id': c.id }) }}">{{ c.thetitle }}</a>
+                {% endfor %}
+         {% endif %}</h4><hr/>
+ <p>{{ a.thetext }}</p>
+ <p>{{ a.thedate|date("Y-m-d H:i:s") }} par {{ a.FOSUser.username }}</p>
+ {% endfor %}
+ {% endblock %}

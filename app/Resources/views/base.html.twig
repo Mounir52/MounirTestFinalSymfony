@@ -31,11 +31,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path("fos_user_profile_show") }}">Espace Perso</a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ path("admin_article_index") }}">Admin Article</a>
+                    </li>
                     {# SI on est admin#}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path("admin_section_index") }}">Admin Section</a>
                     </li>
+                    
                 {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path("fos_user_security_logout") }}">Déconnexion</a>
@@ -55,6 +59,7 @@
     </nav>
     <div class="jumbotron">
         <div class="container">
+        {% block menu %}{% endblock %}
         {% block body %}{% endblock %}
         </div></div>
         {% block javascripts %}

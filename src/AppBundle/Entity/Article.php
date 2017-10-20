@@ -72,7 +72,8 @@ class Article
      */
     public function __construct()
     {
-        $this->section = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->thedate = new \DateTime();
+        $this->Section = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
          public function __toString()
